@@ -1,6 +1,9 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+/* eslint-env node */
+'use strict';
+
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode !== 'production';
@@ -8,42 +11,42 @@ module.exports = (env, argv) => {
     plugins: [
       new MiniCssExtractPlugin(),
       new HtmlWebpackPlugin({
-        filename: "index.html",
-        template: "src/app.html",
+        filename: 'index.html',
+        template: 'src/app.html',
       }),
     ],
-    mode: isDevelopment ? "development" : "production",
-    devtool: "source-map",
+    mode: isDevelopment ? 'development' : 'production',
+    devtool: 'source-map',
     module: {
       rules: [
         {
           test: /\.tsx?$/,
-          use: "ts-loader",
+          use: 'ts-loader',
           exclude: /node_modules/,
         },
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
           test: /\.scss$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
       ],
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".js"],
+      extensions: ['.tsx', '.ts', '.js'],
     },
     entry: {
-      index: { import: "./src/app.ts" },
+      index: { import: './src/app.ts' },
     },
     output: {
-      filename: "[name].js",
-      path: path.resolve(__dirname, "dist"),
+      filename: '[name].js',
+      path: path.resolve(__dirname, 'dist'),
       clean: true,
     },
     optimization: {
-      runtimeChunk: "single",
+      runtimeChunk: 'single',
     },
     devServer: {
       compress: true,
