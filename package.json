@@ -1,0 +1,20 @@
+{
+  "name": "dev-helpers",
+  "version": "0.1",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && npm run build:cp-public",
+    "build:cp-public": "cp ./public/** ./dist",
+    "type": "tsc --noEmit"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "jquery": "^3.6.1"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.14",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
