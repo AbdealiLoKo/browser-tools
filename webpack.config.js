@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'src/app.html',
+        template: 'src/home/home.html',
       }),
     ],
     mode: isDevelopment ? 'development' : 'production',
@@ -38,7 +38,7 @@ module.exports = (env, argv) => {
       extensions: ['.tsx', '.ts', '.js'],
     },
     entry: {
-      index: { import: './src/app.ts' },
+      home: { import: './src/home/home.ts' },
     },
     output: {
       filename: '[name].js',
