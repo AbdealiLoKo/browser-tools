@@ -4,8 +4,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "start": "webpack serve"
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "start": "webpack serve --mode development"
   },
   "dependencies": {
     "bootstrap": "^5.2.2",

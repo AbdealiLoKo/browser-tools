@@ -2,49 +2,57 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
-  plugins: [
-    new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      title: "Output Management",
-    }),
-  ],
-  mode: "production",
-  devtool: "inline-source-map",
-  entry: "./src/app.ts",
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: "html-loader",
-      },
-      {
-        test: /\.tsx?$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.scss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
+module.exports = (env, argv) => {
+  const isDevelopment = argv.mode !== 'production';
+  return {
+    plugins: [
+      new MiniCssExtractPlugin(),
+      new HtmlWebpackPlugin({
+        filename: "index.html",
+        template: "src/app.html",
+      }),
     ],
-  },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-  },
-  output: {
-    filename: "app.js",
-    path: path.resolve(__dirname, "dist"),
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
+    mode: isDevelopment ? "development" : "production",
+    devtool: "source-map",
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: "ts-loader",
+          exclude: /node_modules/,
+        },
+        {
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader"],
+        },
+        {
+          test: /\.scss$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        },
+      ],
     },
-    compress: true,
-    port: 9000,
-  },
+    resolve: {
+      extensions: [".tsx", ".ts", ".js"],
+    },
+    entry: {
+      index: { import: "./src/app.ts" },
+    },
+    output: {
+      filename: "[name].js",
+      path: path.resolve(__dirname, "dist"),
+      clean: true,
+    },
+    optimization: {
+      runtimeChunk: "single",
+    },
+    devServer: {
+      compress: true,
+      port: 9000,
+    },
+    performance: {
+      hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000,
+    },
+  };
 };
