@@ -4,17 +4,7 @@
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container d-flex p-3 flex-column w-100 h-100 mx-auto">
-      <header class="mt-0">
-        <div>
-          <a class="text-white" href="/">
-            <h3 class="float-md-start mb-0">Browser Tools</h3>
-          </a>
-          <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link active" href="/">Home</a>
-            <a class="nav-link" href="/tools.html">Tools</a>
-          </nav>
-        </div>
-      </header>
+      <%= partial('nav.html', { activePage: 'Home' }) %>
 
       <main class="my-auto px-3">
         <h1>Browser-based tools for quick usage.</h1>

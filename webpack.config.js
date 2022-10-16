@@ -3,6 +3,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const _ = require('lodash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -31,8 +32,11 @@ function generateToolList() {
   return tools;
 }
 
-function partial(name) {
-  return fs.readFileSync(`src/template/partials/${name}`, 'utf-8');
+function partial(name, data) {
+  const source = fs.readFileSync(`src/template/partials/${name}`, 'utf-8');
+  // Ref: https://github.com/jantimon/html-webpack-plugin/blob/v5.5.0/lib/loader.js#L32
+  const compiled = _.template(source, { interpolate: /<%=([\s\S]+?)%>/g });
+  return compiled(data);
 }
 
 module.exports = (env, argv) => {

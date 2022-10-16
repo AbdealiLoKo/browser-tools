@@ -4,17 +4,8 @@
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container p-3 d-flex flex-column w-100 mx-auto">
-      <header>
-        <div>
-          <a class="text-white" href="/">
-            <h3 class="float-md-start mb-0">Browser Tools</h3>
-          </a>
-          <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link" href="/">Home</a>
-            <a class="nav-link active" href="/tools.html">Tools</a>
-          </nav>
-        </div>
-      </header>
+      <%= partial('nav.html', { activePage: 'Tools' }) %>
+
       <% if (tools.length == 0) { %>
       <main class="my-auto px-3">
         <h1>No tools found :(</h1>
