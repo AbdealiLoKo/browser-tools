@@ -39,6 +39,20 @@ function partial(name, data) {
   return compiled(data);
 }
 
+function getEntryImports(prefix) {
+  let imports = [];
+  if (fs.existsSync(`${prefix}.scss`)) {
+    imports = [...imports, `${prefix}.scss`];
+  }
+  if (fs.existsSync(`${prefix}.ts`)) {
+    imports = [...imports, `${prefix}.ts`];
+  }
+  if (imports.length == 0) {
+    throw Error(`Got 0 imports for ${prefix}`);
+  }
+  return imports;
+}
+
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode !== 'production';
   const tools = generateToolList();
@@ -82,8 +96,8 @@ module.exports = (env, argv) => {
       extensions: ['.tsx', '.ts', '.js'],
     },
     entry: {
-      home: { import: './src/home/home.ts' },
-      tools: { import: './src/tools/tools.ts' },
+      home: { import: getEntryImports('./src/home/home') },
+      tools: { import: getEntryImports('./src/tools/tools') },
     },
     output: {
       filename: '[name].js',
