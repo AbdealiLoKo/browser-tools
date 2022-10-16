@@ -1,10 +1,10 @@
 <html>
   <head>
-    <title>Browser Tools</title>
+    <%= partial('title.html') %>
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container d-flex p-3 flex-column w-100 h-100 mx-auto">
-      <%= partial('nav.html', { activePage: 'Home' }) %>
+      <%= partial('nav.html', { name: 'Home' }) %>
 
       <main class="my-auto px-3">
         <h1>Browser-based tools for quick usage.</h1>
