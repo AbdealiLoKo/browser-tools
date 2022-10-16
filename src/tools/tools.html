@@ -28,19 +28,14 @@
             <div class="card-body">
               <h5 class="card-title"><%= tool.name %></h5>
               <p class="card-text"><%= tool.description %></p>
-              <a href="/tools/<%= tool.slug %>" class="btn btn-light">Launch</a>
+              <a href="/tools/<%= tool.slug %>.html" class="btn btn-light">Launch</a>
             </div>
           </div>
           <% }) %>
         </div>
       </div>
 
-      <footer class="mb-0 text-white-50">
-        <p>
-          Created by
-          <a href="https://github.com/AbdealiJK" class="text-white">@AbdealiJK</a>
-        </p>
-      </footer>
+      <%= partial('footer.html') %>
     </div>
   </body>
 </html>

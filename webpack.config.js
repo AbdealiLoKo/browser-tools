@@ -11,7 +11,7 @@ function generateToolList() {
   fs.readdirSync('./src/tools/', { withFileTypes: true }).forEach(item => {
     if (item.isDirectory()) {
       console.log('Found tool:', item.name);
-      const toolMetaFile = path.resolve('./src/tools', item.name, 'app.json');
+      const toolMetaFile = path.resolve('./src/tools', item.name, 'main.json');
       let toolMeta = {
         name: item.name,
         slug: item.name,
@@ -31,8 +31,14 @@ function generateToolList() {
   return tools;
 }
 
+function partial(name) {
+  return fs.readFileSync(`src/template/partials/${name}`, 'utf-8');
+}
+
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode !== 'production';
+  const tools = generateToolList();
+
   return {
     plugins: [
       new MiniCssExtractPlugin(),
@@ -40,14 +46,13 @@ module.exports = (env, argv) => {
         filename: 'index.html',
         template: 'src/home/home.html',
         chunks: ['home'],
+        templateParameters: { partial },
       }),
       new HtmlWebpackPlugin({
         filename: 'tools.html',
         template: 'src/tools/tools.html',
         chunks: ['tools'],
-        templateParameters: {
-          tools: generateToolList(),
-        },
+        templateParameters: { tools, partial },
       }),
     ],
     mode: isDevelopment ? 'development' : 'production',
