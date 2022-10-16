@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Browser Tools</title>
+  </head>
+  <body class="d-flex text-center text-white bg-dark">
+    <div class="cover-container p-3 d-flex flex-column w-100 mx-auto">
+      <header>
+        <div>
+          <a class="text-white" href="/">
+            <h3 class="float-md-start mb-0">Browser Tools</h3>
+          </a>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link active" href="/tools.html">Tools</a>
+          </nav>
+        </div>
+      </header>
+      <% if (tools.length == 0) { %>
+      <main class="my-auto px-3">
+        <h1>No tools found :(</h1>
+      </main>
+      <% } %>
+
+      <div class="container my-auto">
+        <div class="row row-cols-4">
+          <% tools.forEach(tool => { %>
+          <div class="card bg-dark col">
+            <div class="card-body">
+              <h5 class="card-title"><%= tool.name %></h5>
+              <p class="card-text"><%= tool.description %></p>
+              <a href="/tools/<%= tool.slug %>" class="btn btn-light">Launch</a>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <footer class="mb-0 text-white-50">
+        <p>
+          Created by
+          <a href="https://github.com/AbdealiJK" class="text-white">@AbdealiJK</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
