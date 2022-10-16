@@ -72,6 +72,14 @@ module.exports = (env, argv) => {
         chunks: ['tools'],
         templateParameters: { tools, partial },
       }),
+      ...tools.map(tool => {
+        return new HtmlWebpackPlugin({
+          filename: `tools/${tool.slug}.html`,
+          template: `src/tools/${tool.slug}/main.html`,
+          chunks: [`tool-${tool.slug}`],
+          templateParameters: { info: tool, partial },
+        });
+      }),
     ],
     mode: isDevelopment ? 'development' : 'production',
     devtool: 'source-map',
@@ -98,6 +106,11 @@ module.exports = (env, argv) => {
     entry: {
       home: { import: getEntryImports('./src/home/home') },
       tools: { import: getEntryImports('./src/tools/tools') },
+      ...Object.fromEntries(
+        tools.map(tool => {
+          return [`tool-${tool.slug}`, { import: getEntryImports(`./src/tools/${tool.slug}/main`) }];
+        }),
+      ),
     },
     output: {
       filename: '[name].js',

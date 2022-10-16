@@ -27,6 +27,10 @@
     <a class="text-white" href="/">
       <h3 class="float-md-start mb-0">Browser Tools</h3>
     </a>
+    <% if (name != 'Home' && name != 'Tools') { %>
+      <h3 class="float-md-start mb-0 mx-2">·</h3>
+      <h3 class="float-md-start mb-0"><%= name %></h3>
+    <% } %>
     <nav class="nav nav-masthead justify-content-center float-md-end">
       <a class="nav-link <% if (name == 'Home') { %>active<% } %>" href="/">Home</a>
       <a class="nav-link <% if (name == 'Tools') { %>active<% } %>" href="/tools.html">Tools</a>
