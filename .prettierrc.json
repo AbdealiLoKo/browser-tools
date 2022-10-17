@@ -22,7 +22,7 @@
       }
     },
     {
-      "files": "*.html",
+      "files": ["*.html", "*.ejs"],
       "options": {
         "tabWidth": 2,
         "bracketSameLine": true

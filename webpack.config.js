@@ -66,25 +66,25 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'src/home/home.html',
+        template: 'src/home/home.ejs',
         chunks: ['home'],
         templateParameters: { partial },
       }),
       new HtmlWebpackPlugin({
         filename: 'tools.html',
-        template: 'src/tools/tools.html',
+        template: 'src/tools/tools.ejs',
         chunks: ['tools'],
         templateParameters: { tools, partial },
       }),
       ...tools.map(tool => {
         return new HtmlWebpackPlugin({
           filename: `tools/${tool.slug}.html`,
-          template: `src/template/tool.html`,
+          template: `src/template/tool.ejs`,
           chunks: [`tool-${tool.slug}`],
           templateParameters: {
             info: tool,
             partial,
-            content: renderContent(fs.readFileSync(`src/tools/${tool.slug}/main.html`), { info: tool, partial }),
+            content: renderContent(fs.readFileSync(`src/tools/${tool.slug}/main.ejs`), { info: tool, partial }),
           },
         });
       }),

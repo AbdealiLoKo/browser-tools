@@ -1,16 +1,16 @@
 <html>
   <head>
-    <%= partial('title.html', info) %>
+    <%= partial('title.ejs', info) %>
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container p-3 d-flex flex-column w-100 mx-auto">
-      <%= partial('nav.html', info) %>
+      <%= partial('nav.ejs', info) %>
 
       <div class="container my-auto">
         <%= content %>
       </div>
 
-      <%= partial('footer.html', info) %>
+      <%= partial('footer.ejs', info) %>
     </div>
   </body>
 </html>

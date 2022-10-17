@@ -1,10 +1,10 @@
 <html>
   <head>
-    <%= partial('title.html') %>
+    <%= partial('title.ejs') %>
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container p-3 d-flex flex-column w-100 mx-auto">
-      <%= partial('nav.html', { name: 'Tools' }) %>
+      <%= partial('nav.ejs', { name: 'Tools' }) %>
 
       <% if (tools.length == 0) { %>
       <main class="my-auto px-3">
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <%= partial('footer.html') %>
+      <%= partial('footer.ejs') %>
     </div>
   </body>
 </html>
