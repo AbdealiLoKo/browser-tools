@@ -110,6 +110,9 @@ module.exports = (env, argv) => {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
+      alias: {
+        '@src': path.resolve(__dirname, 'src/'),
+      },
     },
     entry: {
       home: { import: getEntryImports('./src/home/home') },
