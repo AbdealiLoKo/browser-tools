@@ -34,6 +34,10 @@ function generateToolList() {
 
 function partial(name, data) {
   const source = fs.readFileSync(`src/template/partials/${name}`, 'utf-8');
+  return renderContent(source, { ...data, partial });
+}
+
+function renderContent(source, data) {
   // Ref: https://github.com/jantimon/html-webpack-plugin/blob/v5.5.0/lib/loader.js#L32
   const compiled = _.template(source, { interpolate: /<%=([\s\S]+?)%>/g });
   return compiled(data);
