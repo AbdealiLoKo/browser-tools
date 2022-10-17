@@ -1,10 +1,10 @@
 <html>
   <head>
-    <%= partial('title.ejs') %>
+    <%= require('@src/template/partials/title.ejs')() %>
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container d-flex p-3 flex-column w-100 h-100 mx-auto">
-      <%= partial('nav.ejs', { name: 'Home' }) %>
+      <%= require('@src/template/partials/nav.ejs')({ name: 'Home' }) %>
 
       <main class="my-auto px-3">
         <h1>Browser-based tools for quick usage.</h1>
@@ -13,7 +13,7 @@
         </p>
       </main>
 
-      <%= partial('footer.ejs') %>
+      <%= require('@src/template/partials/footer.ejs')() %>
     </div>
   </body>
 </html>

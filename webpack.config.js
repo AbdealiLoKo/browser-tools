@@ -3,7 +3,6 @@
 
 const path = require('path');
 const fs = require('fs');
-const _ = require('lodash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -32,17 +31,6 @@ function generateToolList() {
   return tools;
 }
 
-function partial(name, data) {
-  const source = fs.readFileSync(`src/template/partials/${name}`, 'utf-8');
-  return renderContent(source, { ...data, partial });
-}
-
-function renderContent(source, data) {
-  // Ref: https://github.com/jantimon/html-webpack-plugin/blob/v5.5.0/lib/loader.js#L32
-  const compiled = _.template(source, { interpolate: /<%=([\s\S]+?)%>/g });
-  return compiled(data);
-}
-
 function getEntryImports(prefix) {
   let imports = [];
   if (fs.existsSync(`${prefix}.scss`)) {
@@ -68,24 +56,19 @@ module.exports = (env, argv) => {
         filename: 'index.html',
         template: 'src/home/home.ejs',
         chunks: ['home'],
-        templateParameters: { partial },
       }),
       new HtmlWebpackPlugin({
         filename: 'tools.html',
         template: 'src/tools/tools.ejs',
         chunks: ['tools'],
-        templateParameters: { tools, partial },
+        templateParameters: { tools },
       }),
       ...tools.map(tool => {
         return new HtmlWebpackPlugin({
           filename: `tools/${tool.slug}.html`,
           template: `src/template/tool.ejs`,
           chunks: [`tool-${tool.slug}`],
-          templateParameters: {
-            info: tool,
-            partial,
-            content: renderContent(fs.readFileSync(`src/tools/${tool.slug}/main.ejs`), { info: tool, partial }),
-          },
+          templateParameters: { info: tool },
         });
       }),
     ],
@@ -105,6 +88,11 @@ module.exports = (env, argv) => {
         {
           test: /\.scss$/i,
           use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        },
+        {
+          test: /\.ejs$/i,
+          loader: 'ejs-loader',
+          options: { esModule: false },
         },
       ],
     },

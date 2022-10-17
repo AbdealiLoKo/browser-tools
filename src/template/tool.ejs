@@ -1,16 +1,16 @@
 <html>
   <head>
-    <%= partial('title.ejs', info) %>
+    <%= require('@src/template/partials/title.ejs')(info) %>
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container p-3 d-flex flex-column w-100 mx-auto">
-      <%= partial('nav.ejs', info) %>
+      <%= require('@src/template/partials/nav.ejs')(info) %>
 
       <div class="container my-auto">
-        <%= content %>
+        <%= require(`@src/tools/${info.slug}/main.ejs`)({ info: info }) %>
       </div>
 
-      <%= partial('footer.ejs', info) %>
+      <%= require('@src/template/partials/footer.ejs')(info) %>
     </div>
   </body>
 </html>
