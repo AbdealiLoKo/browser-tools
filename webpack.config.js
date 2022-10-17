@@ -79,9 +79,13 @@ module.exports = (env, argv) => {
       ...tools.map(tool => {
         return new HtmlWebpackPlugin({
           filename: `tools/${tool.slug}.html`,
-          template: `src/tools/${tool.slug}/main.html`,
+          template: `src/template/tool.html`,
           chunks: [`tool-${tool.slug}`],
-          templateParameters: { info: tool, partial },
+          templateParameters: {
+            info: tool,
+            partial,
+            content: renderContent(fs.readFileSync(`src/tools/${tool.slug}/main.html`), { info: tool, partial }),
+          },
         });
       }),
     ],

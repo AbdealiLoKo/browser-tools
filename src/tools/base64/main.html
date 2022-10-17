@@ -1,25 +1,10 @@
-<html>
-  <head>
-    <%= partial('title.html', info) %>
-  </head>
-  <body class="d-flex text-center text-white bg-dark">
-    <div class="cover-container p-3 d-flex flex-column w-100 mx-auto">
-      <%= partial('nav.html', info) %>
-
-      <div class="container my-auto">
-        <div class="row">
-          <div class="col-6">
-            Decoded Data:
-            <textarea id="text-decoded" class="form-control" rows="10"></textarea>
-          </div>
-          <div class="col-6">
-            Encoded Data:
-            <textarea id="text-encoded" class="form-control col-5" rows="10"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <%= partial('footer.html', info) %>
-    </div>
-  </body>
-</html>
+<div class="row">
+  <div class="col-6">
+    Decoded Data:
+    <textarea id="text-decoded" class="form-control" rows="10"></textarea>
+  </div>
+  <div class="col-6">
+    Encoded Data:
+    <textarea id="text-encoded" class="form-control col-5" rows="10"></textarea>
+  </div>
+</div>
