@@ -1,10 +1,10 @@
 <html>
   <head>
-    <%= require('@src/template/partials/title.ejs')(info) %>
+    <%= require('@src/template/partials/title.ejs')({ name: info.name }) %>
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container p-3 d-flex flex-column w-100 mx-auto">
-      <%= require('@src/template/partials/nav.ejs')(info) %>
+      <%= require('@src/template/partials/nav.ejs')({ name: info.name, baseUrl }) %>
 
       <div class="container my-auto">
         <%= require(`@src/tools/${info.slug}/main.ejs`)({ info: info }) %>

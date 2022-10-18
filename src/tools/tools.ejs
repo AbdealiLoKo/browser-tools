@@ -4,7 +4,7 @@
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container p-3 d-flex flex-column w-100 mx-auto">
-      <%= require('@src/template/partials/nav.ejs')({ name: 'Tools' }) %>
+      <%= require('@src/template/partials/nav.ejs')({ name: 'Tools', baseUrl }) %>
 
       <% if (tools.length == 0) { %>
       <main class="my-auto px-3">
@@ -19,7 +19,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= tool.name %></h5>
               <p class="card-text"><%= tool.description %></p>
-              <a href="/tools/<%= tool.slug %>.html" class="btn btn-light">Launch</a>
+              <a href="<%= baseUrl %>/tools/<%= tool.slug %>.html" class="btn btn-light">Launch</a>
             </div>
           </div>
           <% }) %>

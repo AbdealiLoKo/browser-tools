@@ -4,12 +4,12 @@
   </head>
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container d-flex p-3 flex-column w-100 h-100 mx-auto">
-      <%= require('@src/template/partials/nav.ejs')({ name: 'Home' }) %>
+      <%= require('@src/template/partials/nav.ejs')({ name: 'Home', baseUrl }) %>
 
       <main class="my-auto px-3">
         <h1>Browser-based tools for quick usage.</h1>
         <p class="lead">
-          <a href="/tools.html" class="btn btn-lg btn-light fw-bold">Find tools</a>
+          <a href="<%= baseUrl %>/tools.html" class="btn btn-lg btn-light fw-bold">Find tools</a>
         </p>
       </main>
 

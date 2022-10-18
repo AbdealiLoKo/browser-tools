@@ -48,6 +48,7 @@ function getEntryImports(prefix) {
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode !== 'production';
   const tools = generateToolList();
+  const baseUrl = (process.env.BASE_URL || '').replace(/\/$/, '');
 
   return {
     plugins: [
@@ -56,19 +57,20 @@ module.exports = (env, argv) => {
         filename: 'index.html',
         template: 'src/home/home.ejs',
         chunks: ['home'],
+        templateParameters: { baseUrl },
       }),
       new HtmlWebpackPlugin({
         filename: 'tools.html',
         template: 'src/tools/tools.ejs',
         chunks: ['tools'],
-        templateParameters: { tools },
+        templateParameters: { tools, baseUrl },
       }),
       ...tools.map(tool => {
         return new HtmlWebpackPlugin({
           filename: `tools/${tool.slug}.html`,
           template: `src/template/tool.ejs`,
           chunks: [`tool-${tool.slug}`],
-          templateParameters: { info: tool },
+          templateParameters: { info: tool, baseUrl },
         });
       }),
     ],
