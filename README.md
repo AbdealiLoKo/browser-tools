@@ -3,6 +3,8 @@
 This repo contains a bunch of tools which run purely on the browser.  
 It requires no server, and no installations.  
 
+See [abdealijk.github.io/browser-tools](https://abdealijk.github.io/browser-tools/) to access the tools.
+
 ## Objective
 
 Many times, we look for tools online like simple PDF converters, SQL formatters, etc. while
