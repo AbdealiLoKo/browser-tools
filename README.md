@@ -5,6 +5,22 @@ It requires no server, and no installations.
 
 See [abdealijk.github.io/browser-tools](https://abdealijk.github.io/browser-tools/) to access the tools.
 
+## Setup
+
+To set this up in a local/developer environment:
+
+```
+npm install
+
+# For a live server
+npm run start
+# Open browser at localhost:9000
+
+# For a dev static build
+npm run build:dev
+# Open browser and navigate to dist/
+```
+
 ## Objective
 
 Many times, we look for tools online like simple PDF converters, SQL formatters, etc. while
