@@ -7,7 +7,7 @@ $('#text-decoded').on('input', ev => {
 
 $('#text-encoded').on('input', ev => {
     const target = ev.target as HTMLInputElement;
-    $('#text-encoded').val(atob(target.value));
+    $('#text-decoded').val(atob(target.value));
 });
 
 const initialText = 'Try it out !';
