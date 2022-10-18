@@ -1,0 +1,17 @@
+@import 'bootstrap/scss/bootstrap.scss';
+
+.cover-container {
+  max-width: 80em;
+}
+
+#qr-generator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.qr-code-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
