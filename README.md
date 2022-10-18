@@ -29,10 +29,16 @@ working on our day to day tasks. And we just use the first search result we get 
 We put in our files (sometimes with sensitive information) without really reviewing whether
 that website is saving the information, sending it to a server, etc.
 
-Many of these websites send information to a server and keep track of it.  
-Many of them also say they delete the server information every few days.  
+Many of these websites send information to a server.  
+Some of them mention that the server info is deleted periodically in their privacy policy.  
+Few of them are open source and can be reviewed.  
 But more often than not - there is no clear way to audit these tools.
 
 This project aims to create tools which does not require any server.  
-Everything runs on the browser on your computer.  
+Everything runs on the browser, on your computer.  
 The code is also open sourced - so it can be audited to chck for security issues.
+
+This project also tries to see to what level can we run things purely on a browser.  
+With new technologies like webasm, rust, etc. which allow non-javascript code to be
+run in a browser easily now - we try to see how many tools can be purely run on a
+browser and what limitations exist.
